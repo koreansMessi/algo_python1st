@@ -1,0 +1,19 @@
+#update 함수 정의 내에서 변수 값을 초기화하면 지역변수를 가리킨다.
+#따라서 전역변수의 값을 함수 내에서 바꿔주기 위해서는 global을 지정해야 한다.
+
+# global 지정 예시
+x= 10
+def update():
+	global x
+	print(x)
+	
+update()
+
+
+# global 미지정 예시
+y= 10
+def update2():
+	y += 1
+	print(y) 초기화하려는 y는 지역변수이므로 에러가 발생한다.
+	
+update2()
