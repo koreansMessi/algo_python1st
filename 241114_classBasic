@@ -1,0 +1,28 @@
+class User:
+    def __init__(self, name, password):
+        self.name = name
+        self.__password = password              # 변수 앞에 _ 또는 __ 가 있으면 private한 접근 속성을 가진다.
+    def login(self, password):
+        if self.__password == password:
+            return True
+        else:
+            return False
+    def logout(self):
+        print(self.name)
+        print(self.__password)
+
+a = User('admin', 'password')
+if a.login('password'):
+    a.logout()
+
+
+
+class GuestUser(User):
+    def __init__(self):
+        super().__init__('guestName', 'guestPassword')
+
+b = GuestUser()
+#if b.login('guest'):
+ #   b.logout()
+b.logout()
+
