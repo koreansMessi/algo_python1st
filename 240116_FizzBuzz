@@ -1,0 +1,33 @@
+# FizzBuzz program myself
+for i in range(1,101):
+    if (i % 3 == 0) & (i % 5 == 0):
+        print('FizzBuzz')
+    elif i % 3 == 0:
+        print('Fizz')
+    elif i % 5 == 0:
+        print('Buzz')
+    else:
+        print(i)
+
+# FizzBuzz program in the book(1)
+for i in range(1,101):
+    if i%3 == 0:
+        if i%5 == 0:
+            print('FizzBuzz', end = ' ') # 줄바꿈 없이 공백을 출력)
+        else:
+            print('Fizz', end = ' ')
+    elif i%5 == 0:
+        print("Buzz", end = ' ')
+    else:
+        print(i, end=' ')
+
+# FizzBuzz program in the book(2) similar to mine
+for i in range(1,101):
+    if (i % 3 == 0) and (i % 5 == 0):
+        print('FizzBuzz', end = ' ')
+    elif i % 3 == 0:
+        print('Fizz', end = ' ')
+    elif i % 5 == 0:
+        print('Buzz', end = ' ')
+    else:
+        print(i, end = ' ')
