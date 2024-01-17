@@ -1,0 +1,54 @@
+import sys
+
+# 거스름돈 금액 구하기
+insert_price = input('insert: ')
+if not insert_price.isdecimal():    # (1)쉼표가 있는 숫자 인식하기
+    sys.exit()
+product_price = input('product: ')
+if not product_price.isdecimal():
+    sys.exit()
+change = int(insert_price) - int(product_price)
+if not change > 0:                  # (2)투입 금액이 적을 때 고려하기.
+    sys.exit()
+change2 = change
+print('거스름돈은 ' + str(change) + '원이야')
+
+# 5,000원 지폐 매수 구하기
+r5000 = change // 5000
+q5000 = change % 5000
+print('5000: ' + str(r5000))
+
+# 1,000원 지폐 매수 구하기
+r1000 = q5000 // 1000
+q1000 = q5000 % 1000
+print('1000: ' + str(r1000))
+
+# 500원 지폐 매수 구하기
+r500 = q1000 // 500
+q500 = q1000 % 500
+print('500: ' + str(r500))
+
+# 100원 지폐 매수 구하기
+r100 = q500 // 100
+q100 = q500 % 100
+print('100: ' + str(r100))
+
+
+print("for문 사용해서 거스름돈 나누기")
+# for문 사용해서 거스름돈 나누기
+for i in [5000, 1000, 500, 100]:
+    print(str(i) + ': ' + str(change//i))
+    change = change % i
+
+
+
+# divmod 함수 이용하기
+"""
+함수형태:     divmod(a, b)
+실행결과:    (a // b, a % b) Tuple !
+"""
+print("for문과 divmod함수 사용해서 거스름돈 나누기")
+# for문 divmod함수 사용해서 거스름돈 나누기
+for i in [5000, 1000, 500, 100]:
+    r, change2 = divmod(change2, i)
+    print(str(i) + ': ' + str(r))
