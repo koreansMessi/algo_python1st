@@ -1,0 +1,44 @@
+# p.119 2장 문제2
+
+
+######## 1392 ~ 1450 사이 년도를 입력할 때까지 년도 입력받기
+a = int(input("년도(1392 ~ 1450)를 입력하세요: "))
+
+def year_input():
+    global a
+    a = int(input("년도(1392 ~ 1450)를 입력하세요: "))
+    
+    if (a >1450) or (a <1392):
+        year_input()
+
+if (a >1450) or (a <1392):
+        year_input()
+
+
+
+######## (1) If문 사용한 코드
+        """
+if a < 1398:
+    print('태조 ' + str(a-1391) + '년')
+elif a < 1400:
+    print('정종 ' + str(a-1397) + '년')
+elif a < 1418:
+    print('태종 ' + str(a-1399) + '년')
+elif a < 1450:
+    print('세종 ' + str(a-1417) + '년')
+else:
+    print('세종 ' + str(a-1449) + '년')
+        """
+
+######## (2) Dict 사용한 코드
+years = {
+    range(1392, 1398): '태조',
+    range(1398, 1400): '정종',
+    range(1400, 1418): '태종',
+    range(1418, 1450): '세종',
+    range(1450, 1451): '문종'}
+
+for i, j in years.items():                                      # .itmes()메서드는 dict의 키와 값을 같이 튜플로 출력
+    if a in i:                                                  # 입력한 년도가 해당 키의 range 안에 있나? 반복하며 확인
+        print( j + ' ' +  str(a - i.start + 1) + '년' )         # 있으면 출력해라..
+        break
