@@ -1,0 +1,89 @@
+maze = [
+    [9,9,9,9,9,9,9,9,9,9,9,9],
+    [9,0,0,0,9,0,0,0,0,0,0,9],
+    [9,0,9,0,0,0,9,9,0,9,0,9],
+    [9,0,9,9,0,9,0,0,0,9,0,9],
+    [9,0,0,0,9,0,0,9,9,0,9,9],
+    [9,9,9,0,0,9,0,9,0,0,0,9], # 5
+    [9,0,0,0,9,0,9,0,0,9,1,9], # 6
+    [9,0,9,0,0,0,0,9,0,0,9,9], # 7
+    [9,0,0,9,0,9,0,0,9,0,0,9], # 8
+    [9,0,9,0,9,0,9,0,0,9,0,9], # 9
+    [9,0,0,0,0,0,0,9,0,0,0,9], # 10
+    [9,9,9,9,9,9,9,9,9,9,9,9] ]
+
+# 시작 위치 ( x가 세로축, y가 가로축 )
+pos = [[1,1,0]]
+
+# 너비 우선 탐색 함수
+def search_width():
+    
+    while len(pos) > 0:
+        x, y, depth = pos.pop(0)
+        print(x, y)
+
+        # 목표(1)에 도달하면 종료
+        if maze[x][y] == 1:
+            print(depth)
+            break
+
+        
+        # 탐색 완료로 설정
+        maze[x][y] = 2
+
+        # 상하좌우 탐색
+        if maze[x-1][y] < 2:
+            pos.append([x-1, y, depth+1])
+            print('위으로 이동 #' +str(depth))
+        
+        if maze[x+1][y] < 2:
+            pos.append([x+1, y, depth+1])
+            print('아래쪽으로 이동 #'+str(depth))
+            
+        if maze[x][y-1] < 2:
+            pos.append([x, y-1, depth+1])
+            print('왼쪽으로 이동 #'+str(depth))
+            
+        if maze[x][y+1] < 2:
+            pos.append([x, y+1, depth+1])
+            print('오른쪽으로 이동 #'+str(depth))
+    
+
+# 깊이 우선 탐색 함수
+def search_depth(x, y, depth):
+    print(x, y, depth)
+    
+    # 목표에 도달하면 종료
+    if maze[x][y] == 1:
+        print(depth)
+        exit()
+
+    # 탐색 완료로 설정
+    maze[x][y] = 2
+
+    # 상하좌우 탐색
+
+    if maze[x][y+1] < 2:
+        print('오른쪽으로 이동 #'+str(depth))
+        search_depth(x, y+1, depth+1)
+        
+    if maze[x-1][y] < 2:
+        print('위으로 이동 #' +str(depth))
+        search_depth(x-1, y, depth+1)
+        
+    if maze[x+1][y] < 2:
+        print('아래쪽으로 이동 #'+str(depth))
+        
+        search_depth(x+1, y, depth+1)
+    
+    if maze[x][y-1] < 2:
+        print('왼쪽으로 이동 #'+str(depth))
+        search_depth(x, y-1, depth+1)
+
+    
+
+
+    maze[x][y] = 0
+
+
+## 막히면 재귀함수가 종료돼서 재귀함수가 시작된 지점으로 다시 이동(핵심)
