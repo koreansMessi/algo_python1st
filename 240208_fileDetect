@@ -1,0 +1,37 @@
+#4.4.5 깊이 우선 탐색
+print('깊이 우선 탐색', end = '\n\n')
+
+import os
+
+def search(dir, name):
+    a = 1
+    for i in os.listdir(dir):
+        if i == name:
+            print(dir + '/' + i)
+           # print(a * 3)
+           # print(dir+i)
+        if os.path.isdir(dir + '/' + i):
+            #print(4)
+            if os.access(dir + '/' + i, os.R_OK):
+                #print(str(a * 5))
+                
+                search(dir + '/' + i, name)
+
+search('C:/iverilog', 'iverilog')
+
+print('\n\n')
+
+#4.4.5 너비 우선 탐색
+print('너비 우선 탐색' , end = '\n\n')
+import os
+
+queue = ['C:/iverilog/']
+
+while len(queue) > 0:
+    dir = queue.pop()
+    for i in os.listdir(dir):
+        if i == 'iverilog':
+            print(dir + '/' + i)
+        if os.path.isdir(dir + '/' + i):
+            if os.access(dir + '/' + i, os.R_OK):
+                queue.append(dir + '/' + i + '/')
