@@ -44,3 +44,30 @@ def merge(left, right):
 
 print(merge_sort(data))
 
+
+
+
+
+
+
+data = [6,15,4,2,8]
+
+def quick_sort(data):
+    if len(data) <= 1:
+        return data
+    
+    # 피벗으로 리스트의 첫 번째 요소를 사용
+    pivot = data[0]
+    print('pivot: ' + str(pivot))
+    
+    left = [i for i in data[1:] if i <= pivot]
+    right = [i for i in data[1:] if i > pivot]
+    
+    left = quick_sort(left)
+    right = quick_sort(right)
+
+    return left + [pivot] + right
+
+
+print(quick_sort(data))
+
