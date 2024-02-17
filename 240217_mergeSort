@@ -1,0 +1,46 @@
+data = [6,15,4,2,8]
+
+def merge_sort(data):
+    if len(data) <= 1:
+        print("return is..  " + str(data))
+        return data
+    mid = len(data) // 2
+    print(data)
+    print(mid)
+
+    # 재귀적으로 분할
+    left = merge_sort(data[:mid])
+    print(str(left) + ': It is left')
+    right = merge_sort(data[mid:])
+    print(str(right) + ': It is right')                   
+    # 병합
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i, j = 0, 0
+    while (i < len(left)) and (j < len(right)):
+        print('i: ' + str(i) + ',  j: ' + str(j))
+        if left[i] <= right[j]:
+            result.append(left[i])
+            print('result: ' + str(result))
+            i += 1
+        else:
+            result.append(right[j])
+            print('result: ' + str(result))
+            j += 1
+    print('i: ' + str(i) + ',  j: ' + str(j))
+     # 나머지 데이터를 정리해서 추가
+    if i < len(left):
+        result.extend(left[i:])
+        print('result: ' + str(result))
+    if j < len(right):
+        result.extend(right[j:])
+        print('result: ' + str(result))
+    return result
+
+
+
+
+print(merge_sort(data))
+
